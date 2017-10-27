@@ -1,1 +1,1 @@
-* [design](./docs/design/README.md)
+* [design](./readme/design/README.md)

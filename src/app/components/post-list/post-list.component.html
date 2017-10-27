@@ -1,0 +1,18 @@
+<h2>Posts</h2>
+<table class="table table-striped">
+  <thead class="thead-inverse">
+   <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Date</th>
+   </tr> 
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of posts">
+      <td>{{p.name}}</td>
+      <td>{{p.title}}</td>
+      <td>{{p.date}}</td>
+    </tr>
+  </tbody>
+
+</table>

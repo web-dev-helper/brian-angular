@@ -37,7 +37,7 @@
         </div>
         <div class="col-md-6">
           <button class="btn btn-primary pull-right" type="submit">Submit</button>
-          <button class="btn pull-right btn-margin" type="button" [style.display]="post.postId==-1?'none':'block'"
+          <button class="btn pull-right btn-margin" type="button" *ngIf="post.postId!=-1"
            (click)="onDelete()">Delete</button>
         </div>
       </div>

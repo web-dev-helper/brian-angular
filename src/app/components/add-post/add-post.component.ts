@@ -14,14 +14,9 @@ import { Post } from '../../interfaces/post';
 export class AddPostComponent implements OnInit {
 
   // path param 'index'
-  index:number;
+  postId:number;
 
-  // form names
-  // name:string;
-  // title:string;
-  // content:string;
-
-  post:Post;
+  post:Post={postId:-1, name:'', title:'', content:''};
 
   constructor(
     public dataAccess:DataAccessService,
@@ -31,20 +26,28 @@ export class AddPostComponent implements OnInit {
 
   ngOnInit() {
     // set path param
-    let paramIndex = this.activatedRoute.snapshot.params['index'];
-    console.log("index:"+paramIndex);
+    let id = this.activatedRoute.snapshot.params['postId'];
 
-    if( paramIndex !== null)
+    if( id != null)
     {
-      this.post = this.dataAccess.getPost(paramIndex); 
-    }else{
-      this.post = {name:'', title:'', content:''};
+      this.post = this.dataAccess.getPost(id); 
+      console.log("Edit screen");
     }
   }
 
-  // Add new post to Database
-  onAddPost() {
-    this.dataAccess.addPost(this.post);
+  // Handles both insert and update actions
+  onSubmit(){
+    if(this.post.postId == -1){
+      this.dataAccess.addPost(this.post);
+    }else{
+      this.dataAccess.updatePost(this.post);
+    }
+    
     this.router.navigateByUrl('/');
+  }
+
+  onDelete(){
+    this.dataAccess.deletePost(this.postId);
+    this.router.navigateByUrl("/");
   }
 }

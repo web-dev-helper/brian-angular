@@ -8,10 +8,11 @@
    </tr> 
   </thead>
   <tbody>
-    <tr *ngFor="let p of posts">
+    <tr style="cursor:pointer;" *ngFor="let p of posts; let i=index" >
       <td>{{p.name}}</td>
-      <td>{{p.title}}</td>
+      <td><a href="#" routerLink="/view-post/{{i}}">{{p.title}}</a></td>
       <td>{{p.date}}</td>
+      <td><button class="btn" routerLink="/add-post/{{i}}" >Edit</button></td>
     </tr>
   </tbody>
 

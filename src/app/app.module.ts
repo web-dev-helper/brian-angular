@@ -12,9 +12,16 @@ import { ViewPostComponent } from './components/view-post/view-post.component';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+import { DataAccessService } from './services/data-access.service';
+
+import { FormsModule } from '@angular/forms';
+
 const appRoutes=[
 //  {path:'nav-bar', component:NavBarComponent},
   {path:'', component:DashboardComponent},
+  {path:'add-post', component:AddPostComponent},
+  {path:'add-post/:index', component:AddPostComponent},
+  {path:'view-post/:index', component:ViewPostComponent},
   {path:'about', component:AboutComponent}
 ];
 
@@ -32,9 +39,12 @@ const appRoutes=[
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    DataAccessService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

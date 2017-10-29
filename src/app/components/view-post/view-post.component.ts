@@ -14,6 +14,9 @@ export class ViewPostComponent implements OnInit {
   postId:number;
   post:Post;
 
+  // Show/Hide Delete Popup Dialog
+  showDeleteDialog:boolean=false;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,

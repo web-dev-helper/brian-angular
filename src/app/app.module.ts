@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Router } from '@angular/router'
+import { RouterModule, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
+// Components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -12,9 +14,10 @@ import { ViewPostComponent } from './components/view-post/view-post.component';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-import { DataAccessService } from './services/data-access.service';
+import { DeleteDialogComponent } from './components/popup/delete-dialog/delete-dialog.component';
 
-import { FormsModule } from '@angular/forms';
+// Services
+import { DataAccessService } from './services/data-access.service';
 
 const appRoutes=[
 //  {path:'nav-bar', component:NavBarComponent},
@@ -35,7 +38,8 @@ const appRoutes=[
     AddPostComponent,
     ViewPostComponent,
     AboutComponent,
-    FooterComponent
+    FooterComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,

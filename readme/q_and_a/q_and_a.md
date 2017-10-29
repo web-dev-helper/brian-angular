@@ -4,3 +4,7 @@
 ```
 Reason?
 ``` 
+* @Input and @Output. Somehow with input/output together [()] is not working properly.
+```
+Reason?
+```

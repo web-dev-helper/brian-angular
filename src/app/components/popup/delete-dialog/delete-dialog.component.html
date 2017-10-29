@@ -1,0 +1,6 @@
+<div *ngIf="showPopup" class="dialog">
+  <ng-content></ng-content>
+
+  <button type="button" (click)="cancel()">Cancel</button>
+  <button type="button" (click)="deletePost()">Delete</button>
+</div>

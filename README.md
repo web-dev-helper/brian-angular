@@ -9,5 +9,4 @@ https://web-dev-helper.github.io/brian-angular/
 (./readme/firebase/README.md)
 
 ## Debug
-To debug the Angular code on vscode, follow the instruction from the following link
-https://github.com/Microsoft/vscode-recipes/tree/master/Angular-CLI
+To debug the Angular code on vscode, follow the instruction from the following [link](https://github.com/Microsoft/vscode-recipes/tree/master/Angular-CLI)

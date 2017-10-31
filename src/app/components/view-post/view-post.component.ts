@@ -29,7 +29,7 @@ export class ViewPostComponent implements OnInit {
     this.post = this.dataAccessService.getPost(this.postId);
   }
 
-  onDelete(){
+  onDelete(e:Event){
     this.dataAccessService.deletePost(this.postId);
     this.router.navigateByUrl("/");
   }

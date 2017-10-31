@@ -53,7 +53,7 @@ export class AddPostComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
-  onDelete(){
+  onDelete(e:Event){
     this.dataAccess.deletePost(this.post.postId);
     this.router.navigateByUrl("/");
   }

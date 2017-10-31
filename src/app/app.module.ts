@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database'
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment'
 
 // Components
 import { AppComponent } from './app.component';
@@ -18,6 +22,7 @@ import { DeleteDialogComponent } from './components/popup/delete-dialog/delete-d
 
 // Services
 import { DataAccessService } from './services/data-access.service';
+import { PostService } from './services/post.service';
 
 const appRoutes=[
 //  {path:'nav-bar', component:NavBarComponent},
@@ -44,10 +49,15 @@ const appRoutes=[
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment.firebase, 'post-db'),
+    AngularFireAuthModule
   ],
   providers: [
-    DataAccessService
+    DataAccessService,
+    PostService,
+    AngularFireDatabase,
+    AngularFireDatabaseModule
   ],
   bootstrap: [AppComponent]
 })

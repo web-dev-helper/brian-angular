@@ -5,6 +5,8 @@
 Reason?
 ``` 
 * @Input and @Output. Somehow with input/output together [()] is not working properly.
+
+ERROR in ng:///home/javajjang/workspaces/github-web-dev-helper/brian-angular/src/app/components/view-post/view-post.component.html (32,53): Supplied parameters do not match any signature of call target.
 ```
 Reason?
 ```

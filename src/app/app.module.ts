@@ -1,7 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Router } from '@angular/router'
+import { RouterModule, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database'
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment'
 
+// Components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -12,9 +18,18 @@ import { ViewPostComponent } from './components/view-post/view-post.component';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+import { DeleteDialogComponent } from './components/popup/delete-dialog/delete-dialog.component';
+
+// Services
+import { DataAccessService } from './services/data-access.service';
+import { PostService } from './services/post.service';
+
 const appRoutes=[
 //  {path:'nav-bar', component:NavBarComponent},
   {path:'', component:DashboardComponent},
+  {path:'add-post', component:AddPostComponent},
+  {path:'add-post/:postId', component:AddPostComponent},
+  {path:'view-post/:postId', component:ViewPostComponent},
   {path:'about', component:AboutComponent}
 ];
 
@@ -28,13 +43,22 @@ const appRoutes=[
     AddPostComponent,
     ViewPostComponent,
     AboutComponent,
-    FooterComponent
+    FooterComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment.firebase, 'post-db'),
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [
+    DataAccessService,
+    PostService,
+    AngularFireDatabase,
+    AngularFireDatabaseModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

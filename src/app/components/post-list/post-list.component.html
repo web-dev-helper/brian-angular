@@ -5,13 +5,15 @@
     <th>Name</th>
     <th>Title</th>
     <th>Date</th>
+    <th></th>
    </tr> 
   </thead>
   <tbody>
-    <tr *ngFor="let p of posts">
+    <tr *ngFor="let p of posts; let i=index" >
       <td>{{p.name}}</td>
-      <td>{{p.title}}</td>
+      <td><a href="#" routerLink="/view-post/{{p.postId}}">{{p.title}}</a></td>
       <td>{{p.date}}</td>
+      <td><button class="btn" routerLink="/add-post/{{p.postId}}" >Edit</button></td>
     </tr>
   </tbody>
 

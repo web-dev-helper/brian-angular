@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DataAccessService } from '../../services/data-access.service';
+import { PostService } from '../../services/post.service';
+
+import { Post } from '../../interfaces/post';
+
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
@@ -7,15 +14,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostListComponent implements OnInit {
 
-  posts:any[]=[
-    { name:'Brian', title:'Test title from Brian', date:'2017-01-10'},
-    { name:'Gerrard', title:'Test title from Gerrard', date:'2017-02-10'},
-    { name:'Eric', title:'Test title from Eric', date:'2017-05-07'},
-  ];
+  // posts:Post[];
+  posts:Post[];
 
-  constructor() { }
+  constructor(
+    public dataAccess:DataAccessService,
+    private postService: PostService
+  ) {
+   }
 
-  ngOnInit() {
+  ngOnInit(){ 
+    if( environment.useFirebase ){
+      this.postService.getPosts().subscribe( posts => {
+        this.posts = posts;
+      })
+    }else{
+      this.posts = this.dataAccess.getPosts();
+    }
   }
 
 }

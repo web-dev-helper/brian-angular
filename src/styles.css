@@ -37,3 +37,8 @@ html {
   code {
     font-size: 80%;
   }
+
+/* Common Style */
+  .btn-margin{
+    margin-right: 5px;
+}

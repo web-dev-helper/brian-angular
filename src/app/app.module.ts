@@ -18,7 +18,7 @@ import { ViewPostComponent } from './components/view-post/view-post.component';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-import { DeleteDialogComponent } from './components/popup/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from './popups/delete-dialog/delete-dialog.component';
 
 // Services
 import { DataAccessService } from './services/data-access.service';

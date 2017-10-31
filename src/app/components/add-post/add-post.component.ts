@@ -16,8 +16,8 @@ import { environment } from '../../../environments/environment';
 })
 export class AddPostComponent implements OnInit {
 
-  // path param 'index'
-  postId:number;
+  // Show/Hide Delete Popup Dialog
+  showDeleteDialog:boolean=false;
 
   post:Post={postId:-1, name:'', title:'', content:''};
 
@@ -54,7 +54,7 @@ export class AddPostComponent implements OnInit {
   }
 
   onDelete(){
-    this.dataAccess.deletePost(this.postId);
+    this.dataAccess.deletePost(this.post.postId);
     this.router.navigateByUrl("/");
   }
 }

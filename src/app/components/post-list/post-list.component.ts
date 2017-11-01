@@ -31,6 +31,7 @@ export class PostListComponent implements OnInit {
     }else{
       this.posts = this.dataAccess.getPosts();
     }
+
   }
 
 }

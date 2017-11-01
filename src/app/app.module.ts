@@ -28,8 +28,8 @@ const appRoutes=[
 //  {path:'nav-bar', component:NavBarComponent},
   {path:'', component:DashboardComponent},
   {path:'add-post', component:AddPostComponent},
-  {path:'add-post/:postId', component:AddPostComponent},
-  {path:'view-post/:postId', component:ViewPostComponent},
+  {path:'add-post/:key', component:AddPostComponent},
+  {path:'view-post/:key', component:ViewPostComponent},
   {path:'about', component:AboutComponent}
 ];
 

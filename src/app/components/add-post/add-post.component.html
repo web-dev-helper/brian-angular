@@ -37,7 +37,7 @@
         </div>
         <div class="col-md-6">
           <button class="btn btn-primary pull-right" type="submit">Submit</button>
-          <button class="btn pull-right btn-margin" type="button" *ngIf="post.postId!=-1"
+          <button class="btn pull-right btn-margin" type="button" *ngIf="key != null"
            (click)="showDeleteDialog = !showDeleteDialog"
            >Delete</button>
         </div>

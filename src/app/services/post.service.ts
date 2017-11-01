@@ -26,8 +26,18 @@ export class PostService {
    }
 
    // getPost()
+   getPost(key:string){
+    this.post = this.db.object('/posts/'+key).valueChanges();
+    return this.post;
+   }
 
    // updatePost()
+   updatePost(key:string, post:Post){
+     return this.postRef.update(key, post);
+   }
 
    // deletePost()
+   deletePost(key:string){
+     return this.postRef.remove(key);
+   }
 }

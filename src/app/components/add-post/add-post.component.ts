@@ -19,6 +19,7 @@ export class AddPostComponent implements OnInit {
   // Show/Hide Delete Popup Dialog
   showDeleteDialog:boolean=false;
 
+  key:string;
   post:Post={postId:-1, name:'', title:'', content:''};
 
   constructor(
@@ -30,31 +31,38 @@ export class AddPostComponent implements OnInit {
 
   ngOnInit() {
     // set path param
-    let id = this.activatedRoute.snapshot.params['postId'];
+    this.key = this.activatedRoute.snapshot.params['key'];
 
-    if( id != null)
+    if( this.key != null)
     {
-      this.post = this.dataAccess.getPost(id); 
+      // this.post = this.dataAccess.getPost(id); 
+      this.postService.getPost(this.key).subscribe( post => {
+        this.post = post;
+      });
       console.log("Edit screen");
     }
   }
 
   // Handles both insert and update actions
   onSubmit(){
-    if(this.post.postId == -1){
+    if(this.key == null){
       if( environment.useFirebase )
         this.postService.addPost(this.post);
       else
         this.dataAccess.addPost(this.post);
     }else{
-      this.dataAccess.updatePost(this.post);
+      if( environment.useFirebase )
+        this.postService.updatePost(this.key, this.post);
+      else
+        this.dataAccess.updatePost(this.post);
     }
     
     this.router.navigateByUrl('/');
   }
 
   onDelete(e:Event){
-    this.dataAccess.deletePost(this.post.postId);
+    // this.dataAccessService.deletePost(this.key);
+    this.postService.deletePost(this.key)
     this.router.navigateByUrl("/");
   }
 }

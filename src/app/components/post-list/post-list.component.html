@@ -11,9 +11,9 @@
   <tbody>
     <tr *ngFor="let p of posts; let i=index" >
       <td>{{p.name}}</td>
-      <td><a href="#" routerLink="/view-post/{{p.postId}}">{{p.title}}</a></td>
+      <td><a href="#" routerLink="/view-post/{{p.key}}">{{p.title}}</a></td>
       <td>{{p.date}}</td>
-      <td><button class="btn" routerLink="/add-post/{{p.postId}}" >Edit</button></td>
+      <td><button class="btn" routerLink="/add-post/{{p.key}}" >Edit</button></td>
     </tr>
   </tbody>
 

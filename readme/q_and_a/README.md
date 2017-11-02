@@ -10,3 +10,8 @@ ERROR in ng:///home/javajjang/workspaces/github-web-dev-helper/brian-angular/src
 ```
 Reason?
 ```
+
+* Difference between router.navigator() and router.navigatorByUrl()
+```
+Reason?
+```

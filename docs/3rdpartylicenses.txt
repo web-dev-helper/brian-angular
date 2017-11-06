@@ -96,6 +96,10 @@ THE SOFTWARE.
 MIT
 MIT
 
+angular2-flash-messages@1.0.8
+MIT
+MIT
+
 angularfire2@5.0.0-rc.3
 MIT
 MIT

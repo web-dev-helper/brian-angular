@@ -6,6 +6,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database'
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment'
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 // Components
 import { AppComponent } from './app.component';
@@ -24,7 +25,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { DeleteDialogComponent } from './popups/delete-dialog/delete-dialog.component';
 
 // Services
-import { DataAccessService } from './services/data-access.service';
 import { PostService } from './services/post.service';
 import { AuthService } from './services/auth.service';
 import { SettingsService } from './services/settings.service';
@@ -35,10 +35,10 @@ import { SettingsComponent } from './components/settings/settings.component';
 
 const appRoutes=[
   {path:'login', component: LoginComponent},
-  {path:'', component: DashboardComponent, canActiavte:[AuthGuard] },
-  {path:'add-post', component: AddPostComponent, canActiavte:[AuthGuard] },
-  {path:'add-post/:key', component: AddPostComponent, canActiavte:[AuthGuard] },
-  {path:'view-post/:key', component: ViewPostComponent, canActiavte:[AuthGuard] },
+  {path:'', component: DashboardComponent, canActivate:[AuthGuard] },
+  {path:'add-post', component: AddPostComponent, canActivate:[AuthGuard] },
+  {path:'add-post/:key', component: AddPostComponent, canActivate:[AuthGuard] },
+  {path:'view-post/:key', component: ViewPostComponent, canActivate:[AuthGuard] },
   {path:'about', component: AboutComponent},
   {path:'register', component: RegisterComponent, canActivate:[RegisterGuard]},
   {path:'settings', component: SettingsComponent, canActivate:[AuthGuard]},
@@ -68,10 +68,10 @@ const appRoutes=[
     FormsModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase, 'post-db'),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FlashMessagesModule
   ],
   providers: [
-    DataAccessService,
     PostService,
     AngularFireDatabase,
     AngularFireDatabaseModule,

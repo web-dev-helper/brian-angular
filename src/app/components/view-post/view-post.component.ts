@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { DataAccessService } from '../../services/data-access.service';
 import { PostService } from '../../services/post.service';
 
 import { Post } from '../../interfaces/post';
@@ -21,14 +20,12 @@ export class ViewPostComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private dataAccessService:DataAccessService,
     private postService:PostService
   ) {
   }
 
   ngOnInit() {
     this.key = this.activatedRoute.snapshot.params['key'];
-    // this.post = this.dataAccessService.getPost(this.postId);
     this.postService.getPost(this.key).subscribe( post => {
       this.post = post;
       // console.log(this.post.name);

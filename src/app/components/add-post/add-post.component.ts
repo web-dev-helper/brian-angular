@@ -1,13 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { DataAccessService } from '../../services/data-access.service';
-import { PostService } from '../../services/post.service';
-
+import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { PostService } from '../../services/post.service';
 import { Post } from '../../interfaces/post';
-
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-add-post',
@@ -20,13 +18,14 @@ export class AddPostComponent implements OnInit {
   showDeleteDialog:boolean=false;
 
   key:string;
-  post:Post={postId:-1, name:'', title:'', content:''};
+  post:Post={name:'', title:'', content:''};
 
   constructor(
-    public dataAccess:DataAccessService,
+    private flashMessagesService:FlashMessagesService,
     private postService:PostService,
     public router:Router,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private authService:AuthService
   ) {}
 
   ngOnInit() {
@@ -35,33 +34,34 @@ export class AddPostComponent implements OnInit {
 
     if( this.key != null)
     {
-      // this.post = this.dataAccess.getPost(id); 
       this.postService.getPost(this.key).subscribe( post => {
         this.post = post;
       });
       console.log("Edit screen");
+    } else {
+      this.authService.getAuth().subscribe(auth => {
+        this.post.name = auth.email;
+      })
     }
   }
 
   // Handles both insert and update actions
   onSubmit(){
     if(this.key == null){
-      if( environment.useFirebase )
         this.postService.addPost(this.post);
-      else
-        this.dataAccess.addPost(this.post);
+        this.flashMessagesService.show('New post has been added',
+                                    {cssClass:'alert-success', timeout: 2000});
+        this.router.navigateByUrl('/');
     }else{
-      if( environment.useFirebase )
         this.postService.updatePost(this.key, this.post);
-      else
-        this.dataAccess.updatePost(this.post);
+        this.flashMessagesService.show('Post has been updated',
+                                    {cssClass:'alert-success', timeout: 2000});
+        this.router.navigateByUrl('/');
     }
     
-    this.router.navigateByUrl('/');
   }
 
   onDelete(e:Event){
-    // this.dataAccessService.deletePost(this.key);
     this.postService.deletePost(this.key)
     this.router.navigateByUrl("/");
   }

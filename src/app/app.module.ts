@@ -18,6 +18,8 @@ import { ViewPostComponent } from './components/view-post/view-post.component';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { DeleteDialogComponent } from './popups/delete-dialog/delete-dialog.component';
 
@@ -25,15 +27,23 @@ import { DeleteDialogComponent } from './popups/delete-dialog/delete-dialog.comp
 import { DataAccessService } from './services/data-access.service';
 import { PostService } from './services/post.service';
 import { AuthService } from './services/auth.service';
+import { SettingsService } from './services/settings.service';
+
+import { AuthGuard } from './guards/auth.guard';
+import { RegisterGuard } from './guards/register.guard';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const appRoutes=[
-//  {path:'nav-bar', component:NavBarComponent},
-  {path:'', component:DashboardComponent},
-  {path:'add-post', component:AddPostComponent},
-  {path:'add-post/:key', component:AddPostComponent},
-  {path:'view-post/:key', component:ViewPostComponent},
-  {path:'about', component:AboutComponent},
-  {path:'login', component:LoginComponent}
+  {path:'login', component: LoginComponent},
+  {path:'', component: DashboardComponent, canActiavte:[AuthGuard] },
+  {path:'add-post', component: AddPostComponent, canActiavte:[AuthGuard] },
+  {path:'add-post/:key', component: AddPostComponent, canActiavte:[AuthGuard] },
+  {path:'view-post/:key', component: ViewPostComponent, canActiavte:[AuthGuard] },
+  {path:'about', component: AboutComponent},
+  {path:'register', component: RegisterComponent, canActivate:[RegisterGuard]},
+  {path:'settings', component: SettingsComponent, canActivate:[AuthGuard]},
+  // {path:'**', redirectTo: '/login'}
+  {path:'**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
@@ -48,7 +58,10 @@ const appRoutes=[
     AboutComponent,
     FooterComponent,
     DeleteDialogComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    SettingsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +75,10 @@ const appRoutes=[
     PostService,
     AngularFireDatabase,
     AngularFireDatabaseModule,
-    AuthService
+    AuthService,
+    AuthGuard,
+    SettingsService,
+    RegisterGuard
   ],
   bootstrap: [AppComponent]
 })

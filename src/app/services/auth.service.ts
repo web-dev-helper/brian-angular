@@ -22,4 +22,12 @@ export class AuthService {
   logout(){
     return this.afAuth.auth.signOut()
   }
+
+  register(email: string, password: string){
+    return new Promise((resolve, reject)=> {
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then(userDate => resolve(userDate), 
+      err => reject(err));
+    })
+  }
 }

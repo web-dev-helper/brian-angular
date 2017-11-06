@@ -15,3 +15,7 @@ Reason?
 ```
 Reason?
 ```
+* Looks like Chromium has some issue with HTML5. Specifically with Local Storage.
+```
+localStorage doesn't work on Chromium. Same functions works on Chrome and Firefox
+```

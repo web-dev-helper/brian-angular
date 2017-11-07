@@ -13,7 +13,7 @@ export class SettingsService {
       this.settings = JSON.parse(localStorage.getItem('settings'));
       console.log("Fetched:"+JSON.stringify(this.settings));
     } else {
-      console.log("Nothing to fetch");
+      console.log("No settings to fetch from localRepository");
     }
   }
 

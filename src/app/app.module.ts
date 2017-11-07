@@ -33,6 +33,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { RegisterGuard } from './guards/register.guard';
 import { SettingsComponent } from './components/settings/settings.component';
 
+import { LoadingService } from './services/loading.service';
+
 const appRoutes=[
   {path:'login', component: LoginComponent},
   {path:'', component: DashboardComponent, canActivate:[AuthGuard] },
@@ -78,7 +80,8 @@ const appRoutes=[
     AuthService,
     AuthGuard,
     SettingsService,
-    RegisterGuard
+    RegisterGuard,
+    LoadingService
   ],
   bootstrap: [AppComponent]
 })

@@ -10,3 +10,7 @@ https://web-dev-helper.github.io/brian-angular/
 
 ## Debug
 To debug the Angular code on vscode, follow the instruction from the following [link](https://github.com/Microsoft/vscode-recipes/tree/master/Angular-CLI)
+
+## Build
+* Build Angular and Spring Boot with Gradle.
+(https://blog.marcnuri.com/angular-spring-boot-integration-gradle/)
